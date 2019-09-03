@@ -14,9 +14,19 @@ generateY <- function(X, beta, sigma, seed = 5832652){
 # Calculate beta_LS - least-squares solution, do not use lm function
 # X - design matrix
 # Y -response
+
+calculateBeta_old <- function(X, Y){
+  # [ToDo]Calculate beta_LS
+  beta_LS <- as.numeric(solve(t(X) %*% X) %*% t(X) %*% as.matrix(Y))
+  
+  # Return beta
+  return(beta_LS)
+}
+
+
 calculateBeta <- function(X, Y){
   # [ToDo]Calculate beta_LS
-  # previous version: beta_LS <- as.numeric(solve(t(X) %*% X) %*% t(X) %*% as.matrix(Y))
+  # previous version: calculateBeta_old()
   beta_LS <- as.numeric(solve(crossprod(X), crossprod(X, Y)))
   
   # Return beta
@@ -24,9 +34,18 @@ calculateBeta <- function(X, Y){
 }
 
 # Calculate MSE
+
+calculateMSE_old <- function(beta, beta_LS){
+  # [ToDo] Calculate MSE
+  MSE <- mean((beta - beta_LS)^2)
+  
+  # Return MSE - error ||beta - beta_LS||_2^2
+  return(MSE)
+}
+
 calculateMSE <- function(beta, beta_LS){
   # [ToDo] Calculate MSE
-  # previous version: MSE <- mean((beta - beta_LS)^2)
+  # previous version: calculateMSE_old()
   MSE <- as.numeric(crossprod(beta - beta_LS)) / length(beta)
   
   # Return MSE - error ||beta - beta_LS||_2^2
