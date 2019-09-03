@@ -15,9 +15,10 @@ generateY <- function(X, beta, sigma, seed = 5832652){
 # X - design matrix
 # Y -response
 calculateBeta <- function(X, Y){
-  # Calculate beta_LS
-  beta_LS <- as.numeric(solve(t(X) %*% X) %*% t(X) %*% as.matrix(Y))
-
+  # [ToDo]Calculate beta_LS
+  # previous version: beta_LS <- as.numeric(solve(t(X) %*% X) %*% t(X) %*% as.matrix(Y))
+  beta_LS <- as.numeric(solve(crossprod(X), crossprod(X, Y)))
+  
   # Return beta
   return(beta_LS)
 }
