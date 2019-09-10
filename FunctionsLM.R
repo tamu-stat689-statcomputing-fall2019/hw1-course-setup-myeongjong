@@ -46,7 +46,7 @@ calculateMSE_old <- function(beta, beta_LS){
 calculateMSE <- function(beta, beta_LS){
   # [ToDo] Calculate MSE
   # previous version: calculateMSE_old()
-  MSE <- as.numeric(crossprod(beta - beta_LS)) / length(beta)
+  MSE <- as.numeric(crossprod(beta - beta_LS))
   
   # Return MSE - error ||beta - beta_LS||_2^2
   return(MSE)
